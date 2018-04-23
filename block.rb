@@ -5,4 +5,4 @@ class Blockchain
 end
 
 kkkkk = Blockchain.new
-puts aaaaa
+puts kkkkk
