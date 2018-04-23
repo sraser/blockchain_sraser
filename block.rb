@@ -1,5 +1,5 @@
 class Blockchain
 
-	@attr_reader :chain, :transactions
+	attr_reader :chain, :transactions
 
 end
