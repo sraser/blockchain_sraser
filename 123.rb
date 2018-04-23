@@ -4,9 +4,9 @@ require 'sinatra'
 require "sinatra/reloader"
 
 get '/' do
-	"block"
+	"sraser"
 end
 
-get '/mine' do
-	'<h1>you mine a block</h1>'
+get '/sraser' do
+	'PHJ'
 end
