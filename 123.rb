@@ -10,3 +10,8 @@ end
 get '/sraser' do
 	'PHJ'
 end
+
+
+get '/hjhj' do
+	'hihiihi'
+end
