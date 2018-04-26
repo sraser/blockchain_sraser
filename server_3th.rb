@@ -10,7 +10,11 @@ get '/' do
 
 
 	b.current_chain.each do |c|
-		message << "The Number is " + c['index'].to_s + ".<br>"
+		message << "번호는 " + c['index'].to_s + "입니다.<br>"
+		message << "Nonce " + c['nonce'].to_s + "입니다.<br>"
+		message << "시간은 " + c['time'].to_s + "입니다.<br>"
+		message << "앞 주소는 " + c['previous_block'].to_s + "입니다.<br>"
+		message << "내 주소는 " + Digest::SHA256.hexdigest(c.to_s) + "입니다.<br>"
 		message << "<hr>"
 	end
 	

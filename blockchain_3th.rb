@@ -14,7 +14,7 @@ class Blockchain
 
 
 		begin        #반복문
-			nonce = rand(100000)  #랜덤숫자 0~100
+			nonce = rand(10000000)  #랜덤숫자 0~100
 			hashed = Digest::SHA256.hexdigest(nonce.to_s)  # 암호화한걸 hashed 에 넣는다
 				# Digest 대문자 주의 입력값은 문자
 
