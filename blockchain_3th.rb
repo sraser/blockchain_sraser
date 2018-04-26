@@ -25,11 +25,22 @@ class Blockchain
 
 		block = {     #클라스랑 비슷하지만 해시라는 개념으로 좀더 가벼운 느낌
 			# 뭐는 뭐 뭐는 뭐다 의 묶음
-			'index' => @chain.length +1 # 인덱스는 뭐다 뭐는 뭐다 의 묶음
-			'time' => Time.now.to_i  # Time.now 해도됨
+			'index' => @chain.length + 1, # 쉼표 주의, 띄어쓰기 주의
+			'time' => Time.now.to_i,  # Time.now 해도됨
+			'nonce' => nonce,
+			'previous_block' => Digest::SHA256.hexdigest("앞블럭")
 		}
 		@chain << block
-		
+
+	end
+
+	def current_chain
+		@chain
+	end
+	def last_block
+	
+		@chain[-1]   # irb 루비 문법 확인
+		# 
 	end
 
 
