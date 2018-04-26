@@ -10,9 +10,10 @@ get '/' do
 
 
 	b.current_chain.each do |c|
-		message << "번호는 " + c['index'] + "입니다.<br>"
+		message << "The Number is " + c['index'].to_s + ".<br>"
+		message << "<hr>"
 	end
-	message << "<hr>"
+	
 	message
 	#b.current_chain.to_s
 
