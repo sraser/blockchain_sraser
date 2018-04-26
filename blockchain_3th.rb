@@ -22,6 +22,11 @@ class Blockchain
 		end while hashed[0..3] != '0000' # 0~3자리 수를 뽑는다
 		#end while nonce != 0   #%10 10으로 나눴을때 나머지 가 0이랑 같은경우까지
 		#history
+
+		block = {     #클라스랑 비슷하지만 해시라는 개념으로 좀더 가벼운 느낌
+			# 뭐는 뭐 뭐는 뭐다 의 묶음
+			'index' => @chain.length +1 # 인덱스는 뭐다 뭐는 뭐다 의 묶음
+		}
 	end
 
 	def my_blocks
