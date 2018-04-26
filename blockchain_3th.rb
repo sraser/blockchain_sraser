@@ -28,7 +28,9 @@ class Blockchain
 			'index' => @chain.length + 1, # 쉼표 주의, 띄어쓰기 주의
 			'time' => Time.now.to_i,  # Time.now 해도됨
 			'nonce' => nonce,
-			'previous_block' => Digest::SHA256.hexdigest("앞블럭")
+			'previous_block' => Digest::SHA256.hexdigest(last_block.to_s)
+			# 메모리 값이 아닌 그 데이터를 가져오기 위해 JSON.dump 사용
+			#last_block.to_s 가 될수도 있음
 		}
 		@chain << block
 
@@ -40,9 +42,8 @@ class Blockchain
 	def last_block
 	
 		@chain[-1]   # irb 루비 문법 확인
-		# 
+		# 배열중 가장 마지막 거를 찾는거
 	end
-
 
 
 end
