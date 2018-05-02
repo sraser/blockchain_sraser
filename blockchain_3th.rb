@@ -4,11 +4,20 @@ class Blockchain
 
 	def initialize       # 이건 알아서 자동으로 돌아감 스펠링 틀리면 안됨
 		@chain = []
+		@trans = []   
 	end
 
 	def make_a_trans(s, r, a)
 		s + r + a
 
+		trans = {
+			"sender" => s,
+			'receiver' => r,
+			'amount' => a
+
+		}
+		@trans << trans  #계속 쌓아나감
+		@trans #출력
 	end
 
 
@@ -34,9 +43,11 @@ class Blockchain
 			'index' => @chain.length + 1, # 쉼표 주의, 띄어쓰기 주의
 			'time' => Time.now.to_i,  # Time.now 해도됨
 			'nonce' => nonce,
-			'previous_block' => Digest::SHA256.hexdigest(last_block.to_s)
+			'previous_block' => Digest::SHA256.hexdigest(last_block.to_s),
 			# 메모리 값이 아닌 그 데이터를 가져오기 위해 JSON.dump 사용
 			#last_block.to_s 가 될수도 있음
+			"transactions" => @trans  #트렌젝션 박제
+
 		}
 		@chain << block
 

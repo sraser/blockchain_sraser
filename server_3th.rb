@@ -15,6 +15,7 @@ get '/' do
 		message << "시간은 " + c['time'].to_s + "입니다.<br>"
 		message << "앞 주소는 " + c['previous_block'].to_s + "입니다.<br>"
 		message << "내 주소는 " + Digest::SHA256.hexdigest(c.to_s) + "입니다.<br>"
+		message << "거래내역은 " + c["transactions"].to_s + "입니다.<br>"
 		message << "<hr>"
 	end
 	
@@ -32,7 +33,7 @@ get '/mine' do
 end
 
 get '/trans' do
-	b.make_a_trans(params["sender"], params["recv"], params["amount"])
+	b.make_a_trans(params["sender"], params["recv"], params["amount"]).to_s
 	#params["sender"] + params["recv"] + params["amount"]
 	# http://localhost:4567/trans?sender=a&recv=b&amount=1.1
 end
