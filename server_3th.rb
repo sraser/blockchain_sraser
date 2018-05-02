@@ -32,6 +32,7 @@ get '/mine' do
 end
 
 get '/trans' do
-	b.make_a_trans
-	params["sender"]
+	b.make_a_trans(params["sender"], params["recv"], params["amount"])
+	#params["sender"] + params["recv"] + params["amount"]
+	# http://localhost:4567/trans?sender=a&recv=b&amount=1.1
 end
