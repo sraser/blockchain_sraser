@@ -43,5 +43,5 @@ get '/new_wallet' do
 end
 
 get '/all_wallet' do
-	b.show_all_wallet
+	b.show_all_wallet.to_s
 end
