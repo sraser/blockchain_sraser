@@ -7,26 +7,36 @@ class Blockchain
 	def initialize       # 이건 알아서 자동으로 돌아감 스펠링 틀리면 안됨
 		@chain = []
 		@trans = []   
+		@wallet = {}
+
 	end
 
 	def make_a_trans(s, r, a)
 		s + r + a
 
-		trans = {
-			"sender" => s,
-			'receiver' => r,
-			'amount' => a
-
-		}
-		@trans << trans  #계속 쌓아나감
-		@trans #출력
+		if @wallet[s].nil?
+			"보내는 주소가 잘못되었습니다."
+		elsif @wallet[r].nil?
+			"받는 주소가 잘못되었습니다."
+		elsif @wallet[s] < a
+			"돈 없다"
+		else
+			trans = {
+				"sender" => s,
+				'receiver' => r,
+				'amount' => a
+			}
+			@trans << trans  #계속 쌓아나감
+			@trans #출력
+		end
 	end
 
 	# UUID 유니버셜리 유니크 아이디 지갑만들때 유일하게 주소가 나오게 하는거
 
 	def make_a_new_wallet
-		SecureRandom.uuid.gsub("-","")
-
+		address = SecureRandom.uuid.gsub("-","")   #지갑주소 생성
+		@wallet[address] = 1000     # 처음만들면 1000코인 입급
+		@wallet      #지갑 정보  wallet 해쉬 정보
 	end
 
 
@@ -49,6 +59,7 @@ class Blockchain
 
 		block = {     #클라스랑 비슷하지만 해시라는 개념으로 좀더 가벼운 느낌
 			# 뭐는 뭐 뭐는 뭐다 의 묶음
+			#'index' => @chain.size
 			'index' => @chain.length + 1, # 쉼표 주의, 띄어쓰기 주의
 			'time' => Time.now.to_i,  # Time.now 해도됨
 			'nonce' => nonce,
