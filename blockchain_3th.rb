@@ -11,6 +11,10 @@ class Blockchain
 
 	end
 
+	def show_all_wallet
+		@wallet
+	end
+
 	def make_a_trans(s, r, a)
 		s + r + a
 

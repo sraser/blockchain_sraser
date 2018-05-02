@@ -40,6 +40,8 @@ end
 
 get '/new_wallet' do
 	b.make_a_new_wallet.to_s
+end
 
-
+get '/all_wallet' do
+	b.show_all_wallet
 end
