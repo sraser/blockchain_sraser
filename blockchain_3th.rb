@@ -46,9 +46,11 @@ class Blockchain
 			'previous_block' => Digest::SHA256.hexdigest(last_block.to_s),
 			# 메모리 값이 아닌 그 데이터를 가져오기 위해 JSON.dump 사용
 			#last_block.to_s 가 될수도 있음
+
 			"transactions" => @trans  #트렌젝션 박제
 
 		}
+		@trans = []   #트렌젝션 리셋
 		@chain << block
 
 	end
