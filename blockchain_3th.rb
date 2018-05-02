@@ -1,4 +1,6 @@
 require 'digest'     #특정한 문자열을 소화해서 다른 문자열을 만든다 암호화 한다
+require 'securerandom'   # 지갑만들때 필요
+
 
 class Blockchain
 
@@ -18,6 +20,13 @@ class Blockchain
 		}
 		@trans << trans  #계속 쌓아나감
 		@trans #출력
+	end
+
+	# UUID 유니버셜리 유니크 아이디 지갑만들때 유일하게 주소가 나오게 하는거
+
+	def make_a_new_wallet
+		SecureRandom.uuid.gsub("-","")
+
 	end
 
 
