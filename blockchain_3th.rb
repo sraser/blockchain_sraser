@@ -6,6 +6,11 @@ class Blockchain
 		@chain = []
 	end
 
+	def make_a_trans  
+
+	end
+
+
 	def mining
 		
 

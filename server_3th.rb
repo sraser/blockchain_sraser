@@ -30,3 +30,8 @@ get '/mine' do
 	b.mining
 	"블록찾았다"
 end
+
+get '/trans' do
+	b.make_a_trans
+	params["sender"]
+end
