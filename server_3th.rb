@@ -1,5 +1,5 @@
 require 'sinatra'
-
+require 'json'
 require './blockchain_3th'
 
 b= Blockchain.new
@@ -63,3 +63,11 @@ end
 get '/my_nodes' do
 	b.total_nodes.to_s
 end
+
+get '/get_blocks' do
+	new_blocks = JSON.parse(params["block"])
+	b.add_new_blocks(new_blocks)
+	b.current_chain.to_json
+	#puts new_blocks
+end
+

@@ -1,7 +1,7 @@
 require 'digest'     #특정한 문자열을 소화해서 다른 문자열을 만든다 암호화 한다
 require 'securerandom'   # 지갑주소 만들때 필요(같은게 나올수 없다)
 require 'httparty'   #서버 정보 불러오는거
-
+require 'json'     #데이터 불러오는거
 
 
 class Blockchain
@@ -104,10 +104,16 @@ class Blockchain
 	def get_other_blocks
 		@node.each do |n|
 			other_blocks = HTTParty.get("http://localhost:" + n.to_s + "/total_blocks").body
-			if @chain.size < other_block.to_i
-				@chain=[]
+			#HTTParty.get("http://localhost:" + n.to_s + "/total_blocks").body
+			#HTTParty.get("http://localhost:4568/total_blocks")
+			if @chain.size < other_blocks.to_i
+				full_block = HTTParty.get("http://localhost:" + n.to_s + "/get_blocks?block=" + @chain.to_json)
+				@chain = JSON.parse(full_block)
+			#	@chain=[]
 			end
+
 		end
+		
 	end	
 
 	def add_node(node)
@@ -118,6 +124,13 @@ class Blockchain
 	def total_nodes
 		@node
 	end
+
+	def add_new_blocks(new_blocks)
+		new_blocks.each do |b|
+			@chain << b
+		end
+	end
+
 
 
 end
