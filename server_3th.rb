@@ -4,6 +4,7 @@ require './blockchain_3th'
 
 b= Blockchain.new
 
+set :port, 4567
 
 get '/' do
 	message = ""

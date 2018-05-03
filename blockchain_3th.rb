@@ -102,7 +102,12 @@ class Blockchain
 	end
 
 	def get_other_blocks
-		HTTParty.get("http://localhost:4568/total_blocks")
+		@node.each do |n|
+			other_blocks = HTTParty.get("http://localhost:" + n.to_s + "/total_blocks").body
+			if @chain.size < other_block.to_i
+				@chain=[]
+			end
+		end
 	end	
 
 	def add_node(node)
