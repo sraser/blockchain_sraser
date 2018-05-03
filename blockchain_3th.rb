@@ -1,5 +1,5 @@
 require 'digest'     #특정한 문자열을 소화해서 다른 문자열을 만든다 암호화 한다
-require 'securerandom'   # 지갑만들때 필요
+require 'securerandom'   # 지갑주소 만들때 필요(같은게 나올수 없다)
 
 
 class Blockchain
@@ -65,6 +65,10 @@ class Blockchain
 		#end while nonce != 0   #%10 10으로 나눴을때 나머지 가 0이랑 같은경우까지
 		#history
 
+
+
+
+
 		block = {     #클라스랑 비슷하지만 해시라는 개념으로 좀더 가벼운 느낌
 			# 뭐는 뭐 뭐는 뭐다 의 묶음
 			#'index' => @chain.size
@@ -76,6 +80,8 @@ class Blockchain
 			#last_block.to_s 가 될수도 있음
 
 			"transactions" => @trans  #트렌젝션 박제
+
+
 
 		}
 		@trans = []   #트렌젝션 리셋
