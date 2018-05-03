@@ -104,12 +104,10 @@ class Blockchain
 	def get_other_blocks
 		@node.each do |n|
 			other_blocks = HTTParty.get("http://localhost:" + n.to_s + "/total_blocks").body
-			#HTTParty.get("http://localhost:" + n.to_s + "/total_blocks").body
-			#HTTParty.get("http://localhost:4568/total_blocks")
+
 			if @chain.size < other_blocks.to_i
 				full_block = HTTParty.get("http://localhost:" + n.to_s + "/get_blocks?block=" + @chain.to_json)
 				@chain = JSON.parse(full_block)
-			#	@chain=[]
 			end
 
 		end
