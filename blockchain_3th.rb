@@ -1,5 +1,7 @@
 require 'digest'     #특정한 문자열을 소화해서 다른 문자열을 만든다 암호화 한다
 require 'securerandom'   # 지갑주소 만들때 필요(같은게 나올수 없다)
+require 'httparty'   #서버 정보 불러오는거
+
 
 
 class Blockchain
@@ -8,6 +10,7 @@ class Blockchain
 		@chain = []
 		@trans = []   
 		@wallet = {}
+		@node = []
 
 	end
 
@@ -86,16 +89,29 @@ class Blockchain
 		}
 		@trans = []   #트렌젝션 리셋
 		@chain << block
-
 	end
 
 	def current_chain
 		@chain
 	end
+
 	def last_block
 	
 		@chain[-1]   # irb 루비 문법 확인
 		# 배열중 가장 마지막 거를 찾는거
+	end
+
+	def get_other_blocks
+		HTTParty.get("http://localhost:4568/total_blocks")
+	end	
+
+	def add_node(node)
+		@node << node
+		node
+	end
+
+	def total_nodes
+		@node
 	end
 
 
